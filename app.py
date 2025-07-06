@@ -1,86 +1,71 @@
+# app.py
+
 import streamlit as st
-import os
-from groq import Groq
-from dotenv import load_dotenv
+from logic import generate_llama_response, export_as_pdf, age_map
 
-# Load API key
-load_dotenv()
-groq_api_key = os.getenv("GROQ_API_KEY")
-
-# Create client
-client = Groq(api_key=groq_api_key)
-
-# Streamlit setup
-st.set_page_config(page_title="NurtureNest", page_icon="🌈", layout="wide")
-
-def generate_llama_response(prompt):
-    try:
-        completion = client.chat.completions.create(
-            model="llama3-70b-8192",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7,
-            max_tokens=300,
-            top_p=1.0,
-            stream=False,
-        )
-        return completion.choices[0].message.content
-    except Exception as e:
-        return f"❌ Error: {str(e)}"
+st.set_page_config(page_title="NurtureNest AI", page_icon="🌈", layout="wide")
 
 def main():
-    st.title("🌈 NurtureNest AI")
-    st.subheader("AI Assistant for Parents & Teachers of Kids Aged 3–10")
+    # Title
+    st.markdown("<h1 style='text-align: center;'>🌈 NurtureNest AI</h1>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: center;'>Your Smart Assistant for Parents & Teachers of Kids</h4>", unsafe_allow_html=True)
+    st.markdown("---")
 
-    # Sidebar: all options
-    st.sidebar.header("🧠 NurtureNest Controls")
+    # Feature Info
+    with st.expander("✨ What NurtureNest Can Do"):
+        st.markdown("""
+        ✅ Generate **activity ideas**, **quizzes**, and **teaching tips**  
+        ✅ Ask **custom parenting/teaching questions**  
+        ✅ Get a **7-day weekly planner**  
+        ✅ **Download responses as PDF**  
+        ✅ View all **past conversations**
+        """)
 
-    mode = st.sidebar.radio("Who are you?", ["👩‍🏫 Teacher", "👪 Parent"])
+    # Input Controls
+    st.markdown("### 👤 User Preferences")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        mode = st.radio("Who are you?", ["👩‍🏫 Teacher", "👪 Parent"])
+    with col2:
+        tone = st.selectbox("Response Style", ["Fun", "Creative", "Formal"])
+    with col3:
+        if mode == "👪 Parent":
+            age_group = st.selectbox("Child Age", ["3–5", "6–8", "9–10"])
+            child_age = age_map.get(age_group, "6")
+        else:
+            child_age = "7"
 
-    st.sidebar.markdown("---")
-
-    # Age group for personalization
-    age_group = None
-    if mode == "👪 Parent":
-        age_group = st.sidebar.selectbox("Select Child Age", ["3–5", "6–8", "9–10"])
-
-    st.sidebar.markdown("### 🔧 Choose an Action")
-
-    action = st.sidebar.selectbox(
-        "Choose Feature",
+    # Feature Selection
+    st.markdown("### 🎯 What Do You Want Help With?")
+    action = st.selectbox(
+        "Select a Feature",
         [
-            "🎯 Get Activity Idea",
             "❓ Ask a Question",
-            "📝 Generate Worksheet/Quiz",
-            "📖 Parenting / Teaching Help"
+            "🎯 Get Activity Idea",
+            "🗒️ Generate Worksheet",
+            "📝 Generate Quiz",
+            "📓 Parenting / Teaching Help",
+            "📅 Weekly Planner"
         ]
     )
 
     user_input = ""
     if action == "❓ Ask a Question":
-        user_input = st.sidebar.text_area("Your Question")
+        user_input = st.text_area("Type your question:")
 
-    if st.sidebar.button("✨ Submit"):
-        # Build prompt dynamically
+    if st.button("🚀 Generate Now"):
         if action == "🎯 Get Activity Idea":
-            if mode == "👩‍🏫 Teacher":
-                prompt = "Suggest a creative classroom activity for early learners"
-            else:
-                prompt = f"Suggest a fun indoor non-screen activity for a child aged {age_group}"
-        
-        elif action == "📝 Generate Worksheet/Quiz":
-            if mode == "👩‍🏫 Teacher":
-                prompt = "Create a quiz or worksheet for teaching basic science to 7-year-olds"
-            else:
-                prompt = f"Create a home learning worksheet for a child aged {age_group}"
-        
-        elif action == "📖 Parenting / Teaching Help":
-            if mode == "👩‍🏫 Teacher":
-                prompt = "Give tips for managing a classroom and keeping students engaged"
-            else:
-                prompt = f"Provide parenting guidance for emotional development of a {age_group} child"
-        
+            prompt = f"Suggest a creative classroom activity for age {child_age} students" if mode == "👩‍🏫 Teacher" else f"Suggest a fun indoor non-screen activity for a {child_age} year old child"
+
+        elif action == "🗒️ Generate Worksheet":
+            prompt = f"Create a worksheet for age {child_age} students on basic subjects"
+
+        elif action == "📝 Generate Quiz":
+            prompt = f"Create a simple quiz with answers for {child_age} year olds on science or math"
+
+        elif action == "📓 Parenting / Teaching Help":
+            prompt = "Give tips for managing a classroom and keeping students engaged" if mode == "👩‍🏫 Teacher" else f"Provide parenting guidance for emotional development of a {child_age} year old child"
+
         elif action == "❓ Ask a Question":
             if user_input.strip():
                 prompt = user_input
@@ -88,12 +73,32 @@ def main():
                 st.warning("Please type your question.")
                 return
 
-        with st.spinner("Talking to NurtureNest AI..."):
-            result = generate_llama_response(prompt)
-            st.markdown("### 🧠 NurtureNest Suggests:")
-            st.success(result)
+        elif action == "📅 Weekly Planner":
+            prompt = f"Create a fun, friendly and clear 7-day {mode.lower()} plan with {tone.lower()} tips and activities for a {child_age} year old. Format with each day as heading and bullet points."
 
-   
+        # Call AI
+        with st.spinner("🤖 NurtureNest is thinking..."):
+            result = generate_llama_response(prompt)
+            st.success("✅ Response generated!")
+            st.markdown("### 🧠 NurtureNest Suggests:")
+            st.markdown(result)
+            st.markdown(export_as_pdf(result), unsafe_allow_html=True)
+
+            # Save in session
+            if "history" not in st.session_state:
+                st.session_state["history"] = []
+            st.session_state["history"].append({"prompt": prompt, "response": result})
+
+    # View History
+    with st.expander("📜 View Past Interactions"):
+        if "history" in st.session_state:
+            for i, entry in enumerate(st.session_state["history"], 1):
+                st.markdown(f"**{i}.** 🗣️ {entry['prompt']}")
+                st.markdown(f"🧠 {entry['response']}")
+
+    # Footer
+    st.markdown("---")
+    st.markdown("<center><sub>Made with ❤️ for kids, parents, and teachers</sub></center>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
