@@ -28,7 +28,7 @@ def main():
             "🍎 Nutrition Tips", "📖 Interactive Story", "🌟 Personalized Learning Plan",
             "🎁 Reward System", "❓ Ask a Custom Question"
         ])
-        topic = st.sidebar.text_input("📝 Enter Topic / Area")
+        topic = st.sidebar.text_input("📝 Ask Tips")
         generate = st.sidebar.button("🚀 Generate Response")
 
     elif selected_mode == "👩‍🏫 Teacher Mode":
