@@ -6,29 +6,32 @@
 
 ## ✨ Features
 
-- 🎯 **Creative Activity Ideas** – Non-screen, indoor or classroom-based
-- 📝 **Worksheets** – Learning worksheets based on child's age
+- 🏠 **Smart Mode Selection** – Clean UI with Parent & Teacher modes shown only when selected
+- 🎯 **Creative Activity Ideas** – Non-screen, indoor or classroom-based activities
+- 📝 **Worksheets** – Learning worksheets customized by topic and class level
 - ❓ **Custom Questions** – Ask any parenting or teaching-related question
-- 📓 **Parenting & Teaching Guidance** – Tips for handling classroom or child behavior
-- 🗒️ **Quizzes** – Age-appropriate educational quizzes
-- 📅 **7-Day Weekly Planner** – Personalized planner with day-wise activities and tips
-- 📄 **PDF Export** – Download responses or planners as PDF
-- 📜 **Interaction History** – Review past queries and results
+- 📓 **Parenting & Teaching Guidance** – Tips for classroom handling or behavior issues
+- 🗒️ **Quizzes** – Instant educational quiz generation
+- 📅 **7-Day Weekly Planner** – Personalized day-wise planner with suggestions
+- 📖 **Interactive Stories** – AI-generated stories using given themes or characters
+- 📄 **PDF Export** – Download any result as a well-formatted PDF
+- 📜 **Interaction History** – View and reuse your past generated prompts
 
 ---
 
 ## 🖥️ Tech Stack
 
-| Tech        | Purpose                          |
-|-------------|----------------------------------|
-| **Python**  | Programming Language             |
-| **Streamlit** | Web UI for the app             |
-| **Groq API (LLaMA 3)** | AI-generated responses |
-| **FPDF**    | PDF generation                   |
-| **dotenv**  | Secure API key management        |
-
+| Tech               | Purpose                                 |
+|--------------------|------------------------------------------|
+| **Python**         | Core programming language                |
+| **Streamlit**      | Web interface framework                  |
+| **Groq API (LLaMA 3)** | Fast, accurate AI text generation    |
+| **FPDF**           | Export responses and plans to PDF        |        |
+| **python-dotenv**  | Environment variable & API key handling  |
+| **BlackBox.AI**     | Logging and debugging AI model behavior  |
 
 ---
+
 
 ## 🚀 Run Locally
 
