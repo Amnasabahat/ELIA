@@ -64,16 +64,19 @@ def main():
         """, unsafe_allow_html=True)
 
         st.markdown("""
-            🍎 <strong>Nutrition:</strong> Healthy meal ideas and tips<br>
-            💡 <strong>Teaching Tips:</strong> Get classroom management advice<br>
-            🛌 <strong>Routine Help:</strong> Sleep schedules and habits made easy<br>
-            📚 <strong>Parenting Advice:</strong> Tailored tips for your child's age and needs<br>
-            📅 <strong>Weekly Schedules:</strong> Fill days with creativity and learning <br>
-            🎯 <strong>Classroom Resources:</strong> Get activities based on subjects & levels<br>
-            📝 <strong>Auto-Generated Content:</strong> Create quizzes and worksheets instantly<br>
-            🌿 <strong>Learning Plans:</strong> Personalized educational paths & family bonding<br>
-            🎙️ <strong>Interactive Stories:</strong> Customize stories with characters & themes<br>
-            📈 <strong>Behavior Support:</strong> Track progress & handle emotions with ease<br>
+           🌈 NurtureNest AI is your creative companion designed to support both parents and teachers in nurturing and educating young minds. 
+            From 🍎 nutrition tips and healthy meal ideas to help your child grow strong, 
+            to 💡 teaching advice that makes classroom management easier,
+            NurtureNest covers it all. It provides 🛌 
+            routine guidance to establish better sleep habits and 📚
+            parenting suggestions tailored to your child's specific needs and age
+            . Plan the week effortlessly with 📅 creative weekly schedules, 
+            and access 🎯 classroom resources categorized by subject and level.
+            Whether you need to 📝 auto-generate quizzes or worksheets, build 🌿
+            personalized learning paths, or explore 🎙️ interactive storytelling with
+            custom characters and themes—NurtureNest delivers. It even supports you
+            in monitoring growth with 📈 behavioral tracking and emotional support tools.
+            Everything you need to raise, teach, and inspire—beautifully simplified in one place.
         """, unsafe_allow_html=True)
 
     elif generate and feature:
