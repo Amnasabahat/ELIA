@@ -51,7 +51,7 @@ def main():
     # --- HEADER ---
     st.markdown("""
         <div style='text-align: center; margin-top: -50px;'>
-            <h1 style='font-size: 48px;'>✨ <span style="color:black;">ELIA</span></h1>
+            <h1 style='font-size: 48px;'>✨ <span style="color:white;">ELIA</span></h1>
             <p style='font-size: 20px; color: gray;'>Empowered Learning & Interaction Assistant</p>
         </div>
     """, unsafe_allow_html=True)
