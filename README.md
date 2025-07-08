@@ -1,10 +1,10 @@
-# 🌈 NurtureNest AI
+# ✨ELIA-Empowered Learning & Interaction Assistant
 
-**NurtureNest** is a friendly AI-powered assistant built for **parents** and **teachers** of children aged **3–10 years**. It helps generate age-appropriate activities, quizzes, emotional development tips, and weekly planners — all through a beautiful, interactive interface!
+**ELIA** is a friendly AI-powered assistant built for **parents** and **teachers** of children aged **3–10 years**. It helps generate age-appropriate activities, quizzes, emotional development tips, and weekly planners — all through a beautiful, interactive interface!
 
 ---
 
-## ✨ Features
+## 🌱 Features
 
 - 🏠 **Smart Mode Selection** – Clean UI with Parent & Teacher modes shown only when selected
 - 🎯 **Creative Activity Ideas** – Non-screen, indoor or classroom-based activities
