@@ -9,6 +9,44 @@ def main():
     # --- SESSION STATE SETUP ---
     if "selected_mode" not in st.session_state:
         st.session_state.selected_mode = "🌐 Home"
+    st.markdown("""
+        <style>
+        /* General body & sidebar */
+        .block-container {
+            background-color: #121212;
+            color: #f5f5f5;
+            padding-top: 1rem;
+        }
+        .stSidebar {
+            background-color: #1e1e1e;
+        }
+        .stRadio > div {
+            color: #e0e0e0;
+        }
+
+        /* Button style */
+        .stButton button {
+            background-color: #4f8bf9;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        /* Box shadow for cards */
+        .glass-box {
+            background-color: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            color: #f0f0f0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #fefefe;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
     # --- HEADER ---
     st.markdown("""
@@ -33,17 +71,18 @@ def main():
 
         if mode == "🌐 Home":
             st.markdown("""
-                <div style='background-color: #e6f2ff; padding: 30px; border-radius: 15px;'>
-                    <h3>🌱 Welcome to ELIA!</h3>
-                    <p style='font-size: 16px;'>Empowered Learning & Interaction Assistant.</p>
-                    <ul>
-                        <li>📅 Weekly plans and 🎯 activities by age/class</li>
-                        <li>🍎 Nutrition, 🛌 Sleep, 📚 Learning support</li>
-                        <li>🎙️ AI-generated stories and quizzes</li>
-                        <li>📝 Worksheets, rubrics, and personalized teaching ideas</li>
-                    </ul>
-                </div>
+            <div class='glass-box'>
+                <h2>🌱 Welcome to ELIA!</h2>
+                <p><i>Empowered Learning & Interaction Assistant.</i></p>
+                <ul>
+                    <li>🗓️ Weekly plans and 🎯 activities by age/class</li>
+                    <li>🍓 Nutrition, 🛌 Sleep, 📚 Learning support</li>
+                    <li>🎙️ AI-generated stories and quizzes</li>
+                    <li>📄 Worksheets, rubrics, and personalized teaching ideas</li>
+                </ul>
+            </div>
             """, unsafe_allow_html=True)
+
 
         elif mode == "👪 Parent Mode":
             st.subheader("👪 Parent Mode")
@@ -76,8 +115,13 @@ def main():
                 show_response(prompt)
 
     # --- FOOTER ---
-    st.markdown("---")
-    st.markdown("<center><sub>🌼 Made with ❤️ for kids, parents, and teachers • © 2025 ELIA</sub></center>", unsafe_allow_html=True)
+    st.markdown("""
+    <hr style='border:1px solid #444'/>
+    <div style='text-align:center; font-size:14px; color: #bbb;'>
+        🌟 Made with ❤️ for kids, parents, and teachers • © 2025 ELIA
+     </div>
+    """, unsafe_allow_html=True)
+
 
 
 
