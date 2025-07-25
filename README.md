@@ -38,7 +38,7 @@
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/nurturenest-ai.git
+git clone https://github.com/Amnasabahat/nurturenest-ai.git
 cd nurturenest-ai
 ```
 ### 2. Create Virtual Environment
